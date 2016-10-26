@@ -9,12 +9,11 @@ import ejava.ca1.business.AppointmentBean;
 import ejava.ca1.business.PeopleBean;
 import ejava.ca1.model.Appointment;
 import ejava.ca1.model.People;
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.ExecutorService;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
@@ -22,12 +21,10 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
@@ -45,7 +42,8 @@ public class AppointmentResource {
     @EJB private AppointmentBean appointmentBean;
     @EJB private PeopleBean peopleBean;
     
-    private final ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
+    @Resource(mappedName = "concurrent/myThreadpool")
+    private ExecutorService executorService;
      
     @GET
     @Path("{email}")

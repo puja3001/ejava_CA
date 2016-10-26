@@ -10,6 +10,7 @@ import ejava.ca1.model.People;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
@@ -35,7 +36,9 @@ import javax.ws.rs.core.Response;
 public class PeopleResource {
     
     @EJB private PeopleBean peopleBean;
-    private final ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
+    
+    @Resource(mappedName = "concurrent/myThreadpool")
+    private ExecutorService executorService;
      
     
     
