@@ -12,6 +12,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
@@ -38,7 +39,7 @@ public class PeopleResource {
     @EJB private PeopleBean peopleBean;
     
     @Resource(mappedName = "concurrent/myThreadpool")
-    private ExecutorService executorService;
+    private ManagedExecutorService executorService;
      
     
     

@@ -12,9 +12,9 @@ import ejava.ca1.model.People;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutorService;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -43,7 +43,7 @@ public class AppointmentResource {
     @EJB private PeopleBean peopleBean;
     
     @Resource(mappedName = "concurrent/myThreadpool")
-    private ExecutorService executorService;
+    private ManagedExecutorService executorService;
      
     @GET
     @Path("{email}")
