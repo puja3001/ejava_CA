@@ -1,12 +1,48 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <head>
+    <link href="../style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        
+<div id="header">
+    <span class="indent">EJAVA Notice Board</span>
+</div>
+        
+<table width="100%">
+<tr>
+  <td class="sidemenu" width="30%">
+
+    <div id="sidemenu">
+      <br />
+      <ui:insert name="sidemenu">
+        <h:form>
+          <h:commandLink value="Create Notice"></h:commandLink>
+          <br />
+          <br />
+          <h:commandLink value="View Forum"></h:commandLink>
+          <br />
+          <br />
+          <a href="logout">Log-Out</a>
+          <br />
+          <br />
+        </h:form>
+      </ui:insert>
+    </div>
+  </td>
+  <td width="70">
+    <ui:insert name="content">
+    </ui:insert>
+  </td>
+</tr>
+</table>
+<div id="footer">
+<span class="indent">Copyright &#999; 2016 by BFF</span>
+</div>
+</body>
 </html>
 

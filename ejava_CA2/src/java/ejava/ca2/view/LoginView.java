@@ -1,15 +1,16 @@
 package ejava.ca2.view;
 
 import ejava.ca2.business.LoginBean;
+import ejava.ca2.model.Groups;
+import ejava.ca2.model.GroupsPK;
 import ejava.ca2.model.Users;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -63,7 +64,6 @@ public class LoginView implements Serializable {
             BigInteger bigInt = new BigInteger(1, digest);
             String output = bigInt.toString(16);
 
-            System.out.println(output);
             return output;
 
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
@@ -76,7 +76,20 @@ public class LoginView implements Serializable {
             Users user = new Users();
             user.setUserid(username);
             user.setPassword(encrypt(password));
-            loginBean.create(user);
+            
+            GroupsPK groupPK = new GroupsPK();
+            groupPK.setGroupid("valid");
+            groupPK.setUserid(user.getUserid());
+            Groups group = new Groups();
+            group.setGroupsPK(groupPK);
+            
+            try{
+                loginBean.register(user, group);
+            }
+            catch (Throwable t) {
+			FacesContext.getCurrentInstance()
+					.addMessage(null, new FacesMessage("User already exists!!"));
+		}
             username = "";
             return (null);
             

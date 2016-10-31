@@ -1,0 +1,39 @@
+html { font-family: Candara, Trebuchet MS, Arial, sans-serif;
+       color: black}
+
+body 
+{
+    height:100%;
+}
+
+#header
+{
+	left:10px;
+        right:10px;
+	font-size:36px;
+	font-weight:bold;
+	line-height:48px;
+	background-color:navy;
+	color:	white;
+}
+#footer
+{
+	font-weight:bold;
+	background-color:navy;
+	color:white;
+        position: absolute;
+        left:10px;
+        right:10px;
+        bottom: 10px;
+}
+
+.sidemenu
+{
+        height:100%;
+	text-align: center;
+	vertical-align:	top;
+        background-color: #ffcc00;
+}
+
+
+.indent { margin-left: 20px; }

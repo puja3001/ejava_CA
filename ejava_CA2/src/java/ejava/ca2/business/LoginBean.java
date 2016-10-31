@@ -3,7 +3,6 @@ package ejava.ca2.business;
 
 import ejava.ca2.model.Users;
 import ejava.ca2.model.Groups;
-import ejava.ca2.model.GroupsPK;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,14 +22,9 @@ public class LoginBean {
     
     @PersistenceContext private EntityManager em;
     
-    public void create(Users user){
+    public void register(Users user, Groups group){
         
         em.persist(user);
-        GroupsPK groupPK = new GroupsPK();
-        groupPK.setGroupid("valid");
-        groupPK.setUserid(user.getUserid());
-        Groups group = new Groups();
-        group.setGroupsPK(groupPK);
         em.persist(group);
         
     }
