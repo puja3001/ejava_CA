@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Notice Board</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../resources/style.css" rel="stylesheet" type="text/css"/>
+        
+    </head>
+    <body>
+     <div id="wrapper">
+            <h1>Java NoticeBoard Home</h1>
+            <p>Welcome to the Java Notice Socket Home. </p>
+            <br />
+            <div id="addNotice">
+                <div class="button"> <a href="#" OnClick="showForm()">Post a new Notice </a> </div>
+                <form id="addNoticeForm">
+                  
+
+                    
+                    <span>Title: <input type="text" name="device_name" id="device_name"></span></br>
+                    <span>Category: 
+                        <select id="device_type">
+                            <option name="type" value="Social">Social</option>
+                            <option name="type" value="ForSale">For Sale</option>
+                            <option name="type" value="Jobs">Jobs</option>
+                            <option name="type" value="Tuition">Tuition</option>
+                        </select></span></br>
+
+                    <span>Content:
+                        <textarea name="content" id="notice_content" rows="1" cols="50"></textarea>
+                    </span></br>
+
+                    <input type="button" class="button" value="Add" onclick=formSubmit()>
+                    <input type="reset" class="button" value="Cancel" onclick=hideForm()>
+                </form>
+            
+        </div>
+
+    </body>
+</html>
