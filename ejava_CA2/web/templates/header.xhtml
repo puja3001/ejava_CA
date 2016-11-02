@@ -5,13 +5,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:composition>
+        <h:form>
             <div id="header">
             <span class="indent">EJAVA Notice Board</span>
-            <a class ="icon" href="notices">Notice 
+             
+           
+<!--            <a class = "icon" href="login">Login</a>
+            <a class = "icon" href="register">Register</a>-->
+<!--            <a class ="icon" href="notices">Notice 
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Circle-icons-clipboard.svg/2000px-Circle-icons-clipboard.svg.png"
-                     height="40px" width="40px"/>
-            </a>
+                     height="28px" width="28px"/>-->
+                <h:commandLink value="Register" rendered="#{empty request.remoteUser}" action="register" styleClass="icon"/>
+            <h:commandLink value="Login" rendered="#{empty request.remoteUser}" action="login" styleClass="icon"/>
+            <h:commandLink value ="Logout" rendered="#{not empty request.remoteUser}" action="request.logout" styleClass="icon"/> 
+             
+            
             </div>
+            </h:form>
     </ui:composition>
 
 </html>
