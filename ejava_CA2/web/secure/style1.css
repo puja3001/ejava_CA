@@ -10,11 +10,13 @@ body
 {
 	left:10px;
         right:10px;
-	font-size:36px;
+	font-size:18px;
 	font-weight:bold;
-	line-height:48px;
-	background-color:navy;
-	color:	white;
+	line-height:40px;
+	color:grey;
+        background-color: #222;
+        border-color: #080808;
+        box-shadow: 0 0 5px rgba(0,0,0,.8);
 }
 #footer
 {
@@ -27,19 +29,23 @@ body
         bottom: 10px;
 }
 
-.topmenu
+.sidemenu
 {
+        height:80%;
 	text-align: center;
 	vertical-align:	top;
         background-color: #ffcc00;
 }
 
 
-.indent { margin-left: 20px; }
+.indent 
+{ 
+    margin-left: 20px;
+}
 
-.icon, .logout{
-    font-size: 15px;
-    color: white;
+.icon{
+    font-size: 18px;
+    color: grey;
     margin-right:30px;
     float:right;
 }
