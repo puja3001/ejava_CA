@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.websocket.OnMessage;
@@ -35,13 +36,16 @@ public class NoticeSocket {
         
         @OnMessage
 	public void message(final Session session, final String msg) {
+            
+            String loggedUser = session.getUserPrincipal().getName();
 		System.out.println(">>> message: " + msg);
                 String[] msgArray = msg.split(":");
 		executor.submit(() -> {
                     System.out.println(">>> in thread");
                     final JsonObject message = Json.createObjectBuilder()
                             .add("title", msgArray[0])
-                            .add("timestamp", (new Date()).toString())
+                            .add("postedBy",loggedUser)
+                            .add("postedOn", (new Date()).toString())
                             .add("category", msgArray[1])
                             .add("content", msgArray[2])
                             .build();

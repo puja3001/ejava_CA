@@ -10,7 +10,10 @@ function configure()
     socket.onmessage = function(evt) {
 		// {message: "the message" , timestamp: "time" }
 		var msg = JSON.parse(evt.data);
-		writeToChatboard(msg.title + ": " + msg.timestamp+ ": " + msg.category+ ": " + msg.content);
+                var toWrite = "\nTitle: "+msg.title+"\nPosted By: "
+                        +msg.postedBy+"\nPosted On: "+msg.postedOn+"\nCategory: "+msg.category
+                        +"\nContent: "+msg.content;
+		writeToChatboard(toWrite);
 	};
         
     socket.onopen = function() {

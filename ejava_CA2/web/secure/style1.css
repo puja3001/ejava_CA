@@ -21,7 +21,7 @@ body
 	font-weight:bold;
 	background-color:navy;
 	color:white;
-        position: absolute;
+        position: relative;
         left:10px;
         right:10px;
         bottom: 10px;
