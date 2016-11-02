@@ -17,7 +17,7 @@
                      height="28px" width="28px"/>-->
                 <h:commandLink value="Register" rendered="#{empty request.remoteUser}" action="register" styleClass="icon"/>
             <h:commandLink value="Login" rendered="#{empty request.remoteUser}" action="login" styleClass="icon"/>
-            <h:commandLink value ="Logout" rendered="#{not empty request.remoteUser}" action="request.logout" styleClass="icon"/> 
+            <h:commandLink value ="Logout" rendered="#{not empty request.remoteUser}" action="#{loginView.logout()}" styleClass="icon"/> 
              
             
             </div>

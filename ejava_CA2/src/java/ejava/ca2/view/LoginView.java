@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @ViewScoped
@@ -57,6 +58,14 @@ public class LoginView implements Serializable {
 		return ("secure/menu?faces-redirect=true");
 	}
         
+        public String logout() {
+		HttpSession session = (HttpSession)FacesContext.getCurrentInstance()
+						.getExternalContext().getSession(false);
+		session.invalidate();
+
+		return ("/index?faces-redirect=true");
+	}
+        
         public String encrypt(String password){
             try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -92,7 +101,7 @@ public class LoginView implements Serializable {
 					.addMessage(null, new FacesMessage("User already exists!!"));
 		}
             username = "";
-            return (null);
+            return ("/login?faces-redirect=true");
             
         }
 
