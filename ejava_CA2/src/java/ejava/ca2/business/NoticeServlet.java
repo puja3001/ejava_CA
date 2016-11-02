@@ -20,7 +20,7 @@ public class NoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
             
-            String noticeURL = req.getContextPath() + "/faces/notices.html";
+            String noticeURL = req.getContextPath() + "/faces/noticeboard.html";
             resp.sendRedirect(noticeURL);
                 
 	}

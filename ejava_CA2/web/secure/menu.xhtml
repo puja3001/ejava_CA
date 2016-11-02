@@ -2,46 +2,87 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <f:metadata>
+    <f:viewAction action="#{noteView.onload()}" />
+    </f:metadata>
     
     <h:body>
         <ui:composition template="../templates/layout.xhtml">
             <ui:define name="title">Menu</ui:define>
             <ui:define name="content">
                 <link href="style1.css" rel="stylesheet" type="text/css"/>
+                <script src="menu.js" type="text/javascript"></script>
                 
-    <table width="100%">
-    <tr>
-    <td class="sidemenu" width="30%">
+        <div class="topmenu" height="40%">
+        <a style="color:black" class="logout" href="logout">Log-Out</a>
+        <br/>
+        <span style="float:left;font-size:20px"><u>Create Note:</u></span> 
+        <br/><br/>
+        <h:form id="postForm">
+            <h:panelGrid columns="2">
+		Title:
+                <h:inputText id ="title" value="#{noteView.title}"/>
 
-        <div id="sidemenu">
-        <br />
-        <h:form>
-          <h:commandLink value="Create Notice"></h:commandLink>
-          <br />
-          <br />
-          <h:commandLink value="View Forum"></h:commandLink>
-          <br />
-          <br />
-          <a href="logout">Log-Out</a>
-          <br />
-          <br />
+		Category:
+                <h:selectOneMenu id="category" value="#{noteView.category}">
+                    <f:selectItem itemValue="social" itemLabel="Social" />
+                    <f:selectItem itemValue="forsale" itemLabel="For Sale" />
+                    <f:selectItem itemValue="jobs" itemLabel="Jobs" />
+                    <f:selectItem itemValue="tuition" itemLabel="Tuition" />
+                    <f:selectItem itemValue="all" itemLabel="All" />
+                </h:selectOneMenu>
+                
+                Content:
+                <h:inputTextarea id="content" rows="7" cols="50" value="#{noteView.content}"/>
+                
+                <h:panelGroup/>
+                <h:commandButton value="Post" onclick="sendMessage();" action="#{noteView.postNote()}"/>
+                              
+            </h:panelGrid>
         </h:form>
     </div>
-  </td>
-  <td width="70%">
-      <div class="indent">
-      <h4> Welcome </h4>
-      <p>
-      This is an interesting site.
-      </p>
-      </div>
-  </td>
-</tr>
-</table>
+<br/><br/>
+      <div class="indent" height="60%">
+          <span style="font-size:20px"><u>Posts:</u></span>
+          <br/>
+          <h:dataTable var="note" value="#{noteView.userNotes}" rendered="#{noteView.userNotes.size() > 0}">
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Title"/>
+						</f:facet>
+                                            <h:outputText value="#{note.notesPK.title}"/>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Category"/>
+						</f:facet>
+                                            <h:outputText value="#{note.category}"/>
+					</h:column>
+            
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="Time of Creation"/>
+						</f:facet>
+                                            <h:outputText value="#{note.notesPK.timeOfCreation}"/>
+					</h:column>
+            
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="Content"/>
+						</f:facet>
+                                            <h:outputText value="#{note.content}"/>
+					</h:column>
+
+				</h:dataTable>
+            </div>
                 
             </ui:define>
         </ui:composition>
             </h:body>
-                </html>
+  </html>
 

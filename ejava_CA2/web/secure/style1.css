@@ -27,9 +27,8 @@ body
         bottom: 10px;
 }
 
-.sidemenu
+.topmenu
 {
-        height:100%;
 	text-align: center;
 	vertical-align:	top;
         background-color: #ffcc00;
@@ -38,9 +37,10 @@ body
 
 .indent { margin-left: 20px; }
 
-.icon{
-    font-size: 20px;
+.icon, .logout{
+    font-size: 15px;
     color: white;
     margin-right:30px;
     float:right;
 }
+

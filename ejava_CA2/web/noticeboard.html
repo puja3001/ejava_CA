@@ -9,38 +9,42 @@ and open the template in the editor.
         <title>Notice Board</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="../resources/style.css" rel="stylesheet" type="text/css"/>
+        <script src="resources/jquery.min.js" type="text/javascript"></script>
+        <script src="resources/noticeboard.js" type="text/javascript"></script>
+        <script src="resources/bootstrap.min.js" type="text/javascript"></script>
+        <link href="resources/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
     </head>
     <body>
-     <div id="wrapper">
+     <div class="container">
             <h1>Java NoticeBoard Home</h1>
             <p>Welcome to the Java Notice Socket Home. </p>
             <br />
-            <div id="addNotice">
-                <div class="button"> <a href="#" OnClick="showForm()">Post a new Notice </a> </div>
-                <form id="addNoticeForm">
-                  
-
-                    
-                    <span>Title: <input type="text" name="device_name" id="device_name"></span></br>
-                    <span>Category: 
-                        <select id="device_type">
-                            <option name="type" value="Social">Social</option>
-                            <option name="type" value="ForSale">For Sale</option>
-                            <option name="type" value="Jobs">Jobs</option>
-                            <option name="type" value="Tuition">Tuition</option>
-                        </select></span></br>
-
-                    <span>Content:
-                        <textarea name="content" id="notice_content" rows="1" cols="50"></textarea>
-                    </span></br>
-
-                    <input type="button" class="button" value="Add" onclick=formSubmit()>
-                    <input type="reset" class="button" value="Cancel" onclick=hideForm()>
-                </form>
             
+        <div id="configure">
+            <form id="showNoticeForm" class="form-group">
+            <label for="category">Category</label> 
+            <select class="form-control" id="category">
+            <option name="type" value="Social">Social</option>
+            <option name="type" value="ForSale">For Sale</option>
+            <option name="type" value="Jobs">Jobs</option>
+            <option name="type" value="Tuition">Tuition</option>
+            <option name="type" value="All">All</option>
+            </select>
+            <br/>
+            <button class="btn btn-success" id="postText" onclick="return configure()">Configure Notice Form</button>
+            </form>
         </div>
-
-    </body>
+            <button style="display:none" class="btn btn-warning" id="postTextAgain" onclick="again()">Configure Again</button>
+            <br/>
+            <br/>
+            <div id="showNotice">
+                <b><i><span id="noticeCategory"></span></i></b>
+                <br/><br/>
+                <label for="content">Content:</label>
+                    <textarea id="content" rows="10" disabled class="form-control"></textarea>
+                <br/>               
+        </div>
+     </div>
+</body>
 </html>
