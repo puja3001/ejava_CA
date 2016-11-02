@@ -27,6 +27,8 @@ body
         left:10px;
         right:10px;
         bottom: 10px;
+        border-color: #080808;
+        box-shadow: 0 0 5px rgba(0,0,0,.8);
 }
 
 .sidemenu
