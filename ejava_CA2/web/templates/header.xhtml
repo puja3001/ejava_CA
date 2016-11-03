@@ -13,7 +13,7 @@
             <h:commandLink value="Login" rendered="#{empty request.remoteUser}" action="login" styleClass="icon"/>
             <h:commandLink value ="Logout" rendered="#{not empty request.remoteUser}" action="#{loginView.logout()}" styleClass="icon"/> 
             <h:outputLink value="notices" styleClass="icon">Notices</h:outputLink>
-            <h:graphicImage value="resources/images/notice.png" height="36px" width="36px" alt="Notice" styleClass="icon"/>
+            <h:graphicImage value="/resources/images/notice.png" height="36px" width="36px" alt="Notice" styleClass="icon"/>
             
             </div>
             </h:form>

@@ -59,9 +59,9 @@
         <role-name>unverified</role-name>
     </security-role>
     
-    <error-page>
+<!--    <error-page>
         <exception-type>javax.faces.application.ViewExpiredException</exception-type>
         <location>/faces/expired.html</location>
-    </error-page>
+    </error-page>-->
 
 </web-app>

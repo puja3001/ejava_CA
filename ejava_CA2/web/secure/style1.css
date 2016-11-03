@@ -79,19 +79,41 @@ body
     font-size: 18px;
     font-weight: bold;
     background-color:  #1a1a1a;
-    
+}
+
+.postindent table tr td{
+    border-width: 1px;
+    border-color: white;
+    border-style: dashed;
+    padding: 10px;
+    text-align:left;
+    font-size: 15px;
     
 }
-.datatable {
-   
-     padding: 10px 15px;
-  
-     border-collapse: separate;
-     border-spacing: 4px;
-     
-     
-     
-} 
+
+.postindent div{
+    color:white;
+    border-width: 1px;
+    border-color: white;
+    border-style: dashed;
+    padding: 5px;
+    text-align:center;
+
+}
+
+.postindent div.one{
+    color:white;
+}
+
+.postindent span{
+    font-size: 1.5em;
+}
+
+.topmenu span{
+    font-size: 1em;
+}
+
+
 #head{
         font-size:18px;
 	font-weight:bold;
@@ -99,11 +121,4 @@ body
 	color:white;
         background-color:  #1a1a1a;
        
-}
-header{
-    font-size:18px;
-	font-weight:bold;
-	line-height:40px;
-	color:white;
-        background-color:  #1a1a1a;
 }

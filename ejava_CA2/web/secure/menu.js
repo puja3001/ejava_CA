@@ -1,5 +1,6 @@
-var socket = new WebSocket("ws://localhost:65138/ejavaca2/notices");
-           
+var context = document.getElementById("ctx").textContent;
+var url  = "ws://"+window.location.hostname+":"+window.location.port+context+"/notices";
+var socket = new WebSocket(url);
     socket.onopen = function() {
         console.log("connection open");
 	};
@@ -7,7 +8,6 @@ var socket = new WebSocket("ws://localhost:65138/ejavaca2/notices");
     socket.onclose = function() {
 	console.log("connection closed");
 	};
-        
 
 function sendMessage(){
     console.log("called send");

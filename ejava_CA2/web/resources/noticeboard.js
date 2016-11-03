@@ -1,5 +1,6 @@
 var socket = null;
 var i = 0;
+var context = document.getElementById("ctx").textContent;
 function configure()
 {
     var original = document.getElementById('contents');
@@ -10,7 +11,7 @@ function configure()
     document.getElementById("showNotices").style.display = "block";
     var sel = document.getElementById("showNoticeForm:category").value;
     
-    var url = '/ejavaca2/api/noticeboard';
+    var url = context+'/api/noticeboard';
     
     jQuery.ajax( {
     url: url,
