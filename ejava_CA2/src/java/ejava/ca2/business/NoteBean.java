@@ -30,5 +30,11 @@ public class NoteBean {
         query.setParameter("userId", userId);
         return(query.getResultList());
     }
+    
+    public List<Notes> findNotesByCategory(String category){
+        TypedQuery<Notes> query = em.createNamedQuery("Notes.findByCategory",Notes.class);
+        query.setParameter("category", category);
+        return(query.getResultList());
+    }
         
 }

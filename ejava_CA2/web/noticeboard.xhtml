@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charser="utf-8"/>
+        <meta name="viewport=" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        
+    </h:head>
+    <h:body>
+            <ui:composition template="templates/layout.xhtml">
+                <ui:define name="title">Notice Board</ui:define>
+                <ui:define name="content">
+                <div class="container">
+                <h:outputScript name="jquery.min.js"/>
+                <h:outputScript name="bootstrap.min.js"/>>
+                <h:outputScript name="noticeboard.js"/>
+                <h:outputStylesheet name="bootstrap.min.css"/>
+                <script src="bootstrap.min.js" type="text/javascript"></script>
+                <h1 style="font-family: monospace;color: goldenrod">Notice Board</h1>
+                <br/>
+                <div id="configure">
+                <h:form id="showNoticeForm" class="form-group">
+                    <label for="category">Category</label> 
+                    <h:selectOneMenu class="form-control" id="category" value="#{noticeBoardView.category}">
+                    <f:selectItem itemValue="social" itemLabel="Social" />
+                    <f:selectItem itemValue="forsale" itemLabel="For Sale" />
+                    <f:selectItem itemValue="jobs" itemLabel="Jobs" />
+                    <f:selectItem itemValue="tuition" itemLabel="Tuition" />
+                    <f:selectItem itemValue="all" itemLabel="All" />
+                    </h:selectOneMenu>
+                <br/>
+                
+            <h:commandButton class="btn btn-success" id="postText" value="Configure Notice Form" 
+                             onclick="configure();return false;" action="#{noticeBoardView.loadAllPostsFromCategory()}" />
+            </h:form>
+            </div>
+                <h:commandButton style="display:none" value="Configure Again" class="btn btn-warning" id="postTextAgain" onclick="again();"/>
+                <br/>
+                <div id="showNotice">
+                <b><i><span id="noticeCategory"></span></i></b>
+                <br/><br/>
+                <label for="content">Content:</label>
+                    <textarea id="content" rows="10" disabled="true" class="form-control"></textarea>
+                <br/>               
+                </div>
+                        
+                </div>
+                </ui:define>   
+            </ui:composition>           
+        
+    </h:body>
+</html>
+
