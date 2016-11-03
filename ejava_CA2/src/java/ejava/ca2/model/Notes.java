@@ -6,6 +6,8 @@
 package ejava.ca2.model;
 
 import java.io.Serializable;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -22,9 +24,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "notes")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n"),
+    @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n ORDER BY n.notesPK.timeOfCreation"),
     @NamedQuery(name = "Notes.findByUserid", query = "SELECT n FROM Notes n WHERE n.notesPK.userId = :userId ORDER BY n.notesPK.timeOfCreation DESC"),
-    @NamedQuery(name = "Notes.findByCategory", query = "SELECT n FROM Notes n WHERE n.category = :category ORDER BY n.notesPK.timeOfCreation DESC")})
+    @NamedQuery(name = "Notes.findByCategory", query = "SELECT n FROM Notes n WHERE n.category = :category ORDER BY n.notesPK.timeOfCreation")})
 public class Notes implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -70,5 +72,15 @@ public class Notes implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+    
+    public JsonObject toJSON(){
+        return(Json.createObjectBuilder()
+                .add("title",notesPK.getTitle())
+                .add("postedOn",notesPK.getTimeOfCreation().toString())
+                .add("postedBy",notesPK.getUserId())
+                .add("category",category)
+                .add("content",content)
+                .build());
     }
 }

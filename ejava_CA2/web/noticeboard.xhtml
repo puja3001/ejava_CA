@@ -16,38 +16,58 @@
                 <ui:define name="content">
                 <div class="container">
                 <h:outputScript name="jquery.min.js"/>
-                <h:outputScript name="bootstrap.min.js"/>>
+                <h:outputScript name="bootstrap.min.js"/>
                 <h:outputScript name="noticeboard.js"/>
                 <h:outputStylesheet name="bootstrap.min.css"/>
-                <script src="bootstrap.min.js" type="text/javascript"></script>
+
                 <h1 style="font-family: monospace;color: goldenrod">Notice Board</h1>
                 <br/>
+                
                 <div id="configure">
-                <h:form id="showNoticeForm" class="form-group">
+            <h:form id="showNoticeForm" class="form-group">
                     <label for="category">Category</label> 
-                    <h:selectOneMenu class="form-control" id="category" value="#{noticeBoardView.category}">
-                    <f:selectItem itemValue="social" itemLabel="Social" />
-                    <f:selectItem itemValue="forsale" itemLabel="For Sale" />
-                    <f:selectItem itemValue="jobs" itemLabel="Jobs" />
-                    <f:selectItem itemValue="tuition" itemLabel="Tuition" />
-                    <f:selectItem itemValue="all" itemLabel="All" />
+                    <h:selectOneMenu class="form-control" id="category">
+                    <f:selectItem itemValue="Social" itemLabel="Social" />
+                    <f:selectItem itemValue="For Sale" itemLabel="For Sale" />
+                    <f:selectItem itemValue="Jobs" itemLabel="Jobs" />
+                    <f:selectItem itemValue="Tuition" itemLabel="Tuition" />
+                    <f:selectItem itemValue="All" itemLabel="All" />
                     </h:selectOneMenu>
                 <br/>
                 
             <h:commandButton class="btn btn-success" id="postText" value="Configure Notice Form" 
-                             onclick="configure();return false;" action="#{noticeBoardView.loadAllPostsFromCategory()}" />
+                             onclick="configure();return false;"/>
             </h:form>
             </div>
+            <h:form id="showNoticeBox" class="form-group">
                 <h:commandButton style="display:none" value="Configure Again" class="btn btn-warning" id="postTextAgain" onclick="again();"/>
+            </h:form>
                 <br/>
-                <div id="showNotice">
+                <div id="connection"></div><br/>
                 <b><i><span id="noticeCategory"></span></i></b>
                 <br/><br/>
-                <label for="content">Content:</label>
-                    <textarea id="content" rows="10" disabled="true" class="form-control"></textarea>
+                <div id="showNotices" style="display:none">
+                <label for="content">Content:</label>              
+                
+                <div id="posts">
+                <div id="contents" class="notice notice-success">
+                        <strong id="title">NO POSTS YET</strong>
+                        <div class="desc">                      
+                        <div id="timestamp">
+                        </div>
+                        <div id="postedBy">
+                        </div>
+                        <div id="category">
+                        </div>
+                        <div>                   
+                            <p id="content">
+                            </p>        
+                        </div>
+                        </div>
                 <br/>               
+                </div>                
                 </div>
-                        
+                </div>
                 </div>
                 </ui:define>   
             </ui:composition>           
