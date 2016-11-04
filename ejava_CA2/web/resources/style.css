@@ -84,3 +84,78 @@ body
 .notice-info>strong {
     color: #45ABCD;
 }
+.topmenu
+{
+        height:40%;
+	text-align: center;
+	vertical-align:	top;
+        background-color: #1a1a1a;
+        
+        margin-left:20px;
+        margin-right:20px;
+        font-family: monospace;
+        color: #b38f00;
+        text-align:left;
+        font-size: 18px;
+        font-weight: bold;
+        
+}
+
+
+
+.post{
+    background-color:gold;
+    font-size: 15px;
+    color:#337ab7;
+}
+.postindent 
+{ 
+    margin-left: 20px;
+    margin-right:20px;
+    font-family: monospace;
+    color: #b38f00;
+    text-align:left;
+    font-size: 18px;
+    font-weight: bold;
+    background-color:  #1a1a1a;
+}
+
+.postindent table tr td{
+    border-width: 1px;
+    border-color: white;
+    border-style: dashed;
+    padding: 10px;
+    text-align:left;
+    font-size: 15px;
+    
+}
+
+.postindent div{
+    color:white;
+    border-width: 1px;
+    border-color: white;
+    border-style: dashed;
+    padding: 5px;
+    text-align:center;
+
+}
+
+
+
+.postindent span{
+    font-size: 1.5em;
+}
+
+.topmenu span{
+    font-size: 1.5em;
+}
+
+
+#head{
+        font-size:18px;
+	font-weight:bold;
+	line-height:40px;
+	color:white;
+        background-color:  #1a1a1a;
+       
+}

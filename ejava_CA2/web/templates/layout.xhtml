@@ -5,7 +5,10 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets" >
     <h:head>
-        <link href="resources/style.css" rel="stylesheet" type="text/css"/>
+        <ui:insert name="css">
+            <link href="/ejavaca2/resources/style.css" rel="stylesheet" type="text/css"/>
+        </ui:insert>
+        
         <title>
             <ui:insert name="title">Notice Board</ui:insert>
         </title>        
