@@ -6,10 +6,11 @@
 package ejava.ca3.business;
 
 import ejava.ca3.model.Pod;
-import javax.ejb.EJB;
+import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -30,6 +31,12 @@ public class PodBean {
        }
 
        em.merge(pod);
+    }
+    
+    public Optional<Pod> get(int id){
+        TypedQuery<Pod> query = em.createNamedQuery("Pod.findByPodId",Pod.class);
+        query.setParameter("podId",id);
+        return (Optional.ofNullable(query.getSingleResult()));
     }
     
 }
