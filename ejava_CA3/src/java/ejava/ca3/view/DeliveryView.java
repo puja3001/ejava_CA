@@ -62,6 +62,7 @@ public class DeliveryView {
         delivery.setAddress(address);
         delivery.setPhone(phone);
         delivery.setCreateDate(new Date(Calendar.getInstance().getTimeInMillis()));
+        name=null;address=null;phone=null;
         Delivery created = deliveryBean.create(delivery);
         Pod pod = new Pod();
         pod.setPkgId(created);

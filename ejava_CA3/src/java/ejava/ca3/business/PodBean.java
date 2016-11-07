@@ -18,11 +18,18 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class PodBean {
     
-    
     @PersistenceContext private EntityManager em;
     
     public void create(Pod pod){
         em.persist(pod);
+    }
+    
+    public void update(Pod pod){
+         if(em.find(Pod.class, pod.getPodId()) == null){
+           throw new IllegalArgumentException("Unknown Pod id");
+       }
+
+       em.merge(pod);
     }
     
 }
