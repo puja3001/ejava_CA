@@ -6,10 +6,10 @@
 package ejava.ca3.web;
 
 import ejava.ca3.business.PodBean;
-import java.io.BufferedReader;
+import ejava.ca3.model.Pod;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Collection;
+import java.io.InputStream;
+import java.util.Calendar;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -31,30 +31,22 @@ public class UploadServlet extends HttpServlet{
     
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException{
-        
-        
-        String note = req.getPart("note").toString();
-        System.out.println("note: "+note);
-        
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(
-//            req.getInputStream()));
-//            StringBuilder sb = new StringBuilder();
-//            for (String line; (line = reader.readLine()) != null;) {
-//             System.out.println(line);
-//  }
-        
-//        int podId = Integer.parseInt(req.getParameter("podId"));
-//        String note = req.getParameter("note");
-//        byte[] image = req.getParameter("image").getBytes();
-//        Long time = Long.parseLong(req.getParameter("time"));
-//        Pod pod = new Pod();
-//        pod.setPodId(podId);
-//        pod.setNote(note);
-//        pod.setImage(image);
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTimeInMillis(time);
-//        pod.setDeliveryDate(new java.sql.Date(cal.getTimeInMillis()));
-//        podBean.update(pod);
+               
+        int podId = Integer.parseInt(req.getParameter("podId"));
+        String note = req.getParameter("note");
+        Part imagePart = req.getPart("image");
+        byte[] image = new byte[(int)imagePart.getSize()];
+        InputStream is = imagePart.getInputStream();
+        is.read(image);
+        Long time = Long.parseLong(req.getParameter("time"));
+        Pod pod = new Pod();
+        pod.setPodId(podId);
+        pod.setNote(note);
+        pod.setImage(image);
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time);
+        pod.setDeliveryDate(new java.sql.Date(cal.getTimeInMillis()));
+        podBean.update(pod);
         
     }
     
