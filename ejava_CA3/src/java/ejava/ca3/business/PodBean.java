@@ -6,6 +6,7 @@
 package ejava.ca3.business;
 
 import ejava.ca3.model.Pod;
+import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,10 +27,6 @@ public class PodBean {
     }
     
     public void update(Pod pod){
-         if(em.find(Pod.class, pod.getPodId()) == null){
-           throw new IllegalArgumentException("Unknown Pod id");
-       }
-
        em.merge(pod);
     }
     
@@ -37,6 +34,11 @@ public class PodBean {
         TypedQuery<Pod> query = em.createNamedQuery("Pod.findByPodId",Pod.class);
         query.setParameter("podId",id);
         return (Optional.ofNullable(query.getSingleResult()));
+    }
+
+    public List<Pod> findAll() {
+        TypedQuery<Pod> query = em.createNamedQuery("Pod.findAll",Pod.class);
+        return(query.getResultList());
     }
     
 }

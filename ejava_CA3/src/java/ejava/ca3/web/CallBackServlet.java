@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author agarwal.puja
  */
 @WebServlet("/callback")
-public class CallBackServlet {
+public class CallBackServlet extends HttpServlet {
     
     @EJB private PodBean podBean;
     
@@ -27,6 +28,7 @@ public class CallBackServlet {
             throws ServletException, IOException{
         
         int podId = Integer.parseInt(req.getParameter("podId"));
+        System.out.println(podId);
         String ackId = req.getParameter("ackId");
         Pod pod = podBean.get(podId).get();
         pod.setAckId(ackId);

@@ -6,13 +6,16 @@
 package ejava.ca3.rest;
 
 import ejava.ca3.business.DeliveryBean;
+import ejava.ca3.business.PodBean;
 import ejava.ca3.model.Delivery;
+import ejava.ca3.model.Pod;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.concurrent.ManagedExecutorService;
+import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -35,32 +38,34 @@ public class DeliveryResource {
     
     @EJB private DeliveryBean deliveryBean;
     
-    @Resource(mappedName = "concurrent/myThreadpool")
-    private ManagedExecutorService executorService;
+    @EJB private PodBean podBean;
+    
+    @Resource(mappedName = "concurrent/schedThreadPool") 
+    private ManagedScheduledExecutorService executor;
     
     @GET
     //@Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     public void get(
             
-            @Suspended final AsyncResponse asyncResponse){
-        executorService.submit(() -> {
+        @Suspended final AsyncResponse asyncResponse){
+        executor.submit(() -> {
             asyncResponse.resume(doGet());
         });
      
      }
 
     private Response doGet() {
-        List<Delivery> delList = new LinkedList();
-        delList = deliveryBean.findAll(); 
+        List<Pod> delList = new LinkedList();
+        delList = podBean.findAll(); 
         JsonArrayBuilder deliveryBuilder = Json.createArrayBuilder();
-        delList.stream().forEach((delivery) -> {
+        delList.stream().forEach((p) -> {
             deliveryBuilder.add(Json.createObjectBuilder()
                     .add("teamId", "1c794860")
-                    .add("podId", delivery.getPod().getPodId())
-                    .add("name",delivery.getName())
-                    .add("address", delivery.getAddress())
-                    .add("phone", delivery.getPhone())
+                    .add("podId", p.getPodId())
+                    .add("name",p.getPkgId().getName())
+                    .add("address", p.getPkgId().getAddress())
+                    .add("phone", p.getPkgId().getPhone())
             
             );
          });

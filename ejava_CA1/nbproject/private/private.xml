@@ -3,13 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Vrinda/Desktop/week03_ca/src/java/ejava/ca1/business/PeopleBean.java</file>
-            <file>file:/Users/Vrinda/Desktop/week03_ca/src/java/ejava/ca1/model/Appointment.java</file>
-            <file>file:/Users/Vrinda/Desktop/week03_ca/src/java/ejava/ca1/rest/AppConfig.java</file>
-            <file>file:/Users/Vrinda/Desktop/week03_ca/src/java/ejava/ca1/business/AppointmentBean.java</file>
-            <file>file:/Users/Vrinda/Desktop/week03_ca/src/java/ejava/ca1/rest/AppointmentResource.java</file>
-            <file>file:/Users/Vrinda/Desktop/week03_ca/src/java/ejava/ca1/model/People.java</file>
-            <file>file:/Users/Vrinda/Desktop/week03_ca/src/java/ejava/ca1/rest/PeopleResource.java</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/src/java/ejava/ca1/rest/AppConfig.java</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/web/views/people.html</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/web/views/appointment.html</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/web/index.html</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/src/java/ejava/ca1/rest/AppointmentResource.java</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/src/java/ejava/ca1/business/PeopleBean.java</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/web/index.min.js</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/src/java/ejava/ca1/business/AppointmentBean.java</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/src/java/ejava/ca1/rest/PeopleResource.java</file>
+            <file>file:/D:/Semester%202%20SE/Enterprise%20Java/CA_EJAVA/ejava_CA/ejava_CA/ejava_CA1/src/java/ejava/ca1/model/Appointment.java</file>
         </group>
     </open-files>
 </project-private>

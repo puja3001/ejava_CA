@@ -7,11 +7,10 @@ package ejava.ca3.business;
 
 import ejava.ca3.model.Pod;
 import java.io.File;
-import java.util.Calendar;
-import javax.annotation.Resource;
+import java.util.LinkedList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.Timeout;
-import javax.ejb.TimerService;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -19,7 +18,6 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.glassfish.jersey.media.multipart.BodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPart;
@@ -31,23 +29,33 @@ import org.glassfish.jersey.media.multipart.file.FileDataBodyPart;
  * @author agarwal.puja
  */
 @Stateless
-public class HQBean {
+public class HQBean implements Runnable {
     
-    @Resource TimerService timerService;
+    @EJB PodBean podBean;
     
-    public void setTimer(int time, int posId){
-        Calendar cal = Calendar.getInstance();
+    @Override
+    public void run() {
+        postToHQ();
     }
    
-    @Timeout
-    public void postToHQ(Pod pod){       
+    public void postToHQ(){    
         
-         Client client = ClientBuilder.newBuilder()
+        List<Pod> pods = new LinkedList();
+        pods = podBean.findAll();
+        
+        for(Pod pod:pods){
+            if(pod.getAckId() == null){
+                receiveAcknowledgement(pod);             
+            }
+        }              
+    }
+    
+    public void receiveAcknowledgement(Pod pod){
+        Client client = ClientBuilder.newBuilder()
             .register(MultiPartFeature.class).build();
         String HQUrl = "http://10.10.0.50:8080/epod/upload";
-        String callback = "http://10.10.24.30:8080/callback";
+        String callback = "http://10.10.24.30:8080/ejava_CA3/callback";
         WebTarget target = client.target(HQUrl);
-        //MultiPart multiPart = new MultiPart();
 
         FileDataBodyPart imgPart = new FileDataBodyPart("image", 
 				new File(pod.getPodId().toString()),
@@ -66,15 +74,14 @@ public class HQBean {
                 .bodyPart(imgPart);
         
         formData.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-                
-         Invocation.Builder inv = target.request();
+
+        Invocation.Builder inv = target.request();
 
 		System.out.println(">>> part: " + formData);
 
 		Response callResp = inv.post(Entity.entity(formData, formData.getMediaType()));
 
 		System.out.println(">> call resp:" + callResp.getStatus());
-        
-    }
+        }
     
 }
