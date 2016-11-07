@@ -19,6 +19,7 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.glassfish.jersey.media.multipart.BodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPart;
@@ -46,7 +47,7 @@ public class HQBean {
         String HQUrl = "http://10.10.0.50:8080/epod/upload";
         String callback = "http://10.10.24.30:8080/callback";
         WebTarget target = client.target(HQUrl);
-        MultiPart multiPart = new MultiPart();
+        //MultiPart multiPart = new MultiPart();
 
         FileDataBodyPart imgPart = new FileDataBodyPart("image", 
 				new File(pod.getPodId().toString()),
@@ -54,19 +55,18 @@ public class HQBean {
 		imgPart.setContentDisposition(
 				FormDataContentDisposition.name("image")
 				.fileName(pod.getPodId().toString()).build());
+                
+        //BodyPart bodyPart = new BodyPart(pod.getImage(),MediaType.APPLICATION_OCTET_STREAM_TYPE);
         
         MultiPart formData = new FormDataMultiPart()
                 .field("teamId","1c794860",MediaType.TEXT_PLAIN_TYPE)
                 .field("podId",pod.getPodId().toString(),MediaType.TEXT_PLAIN_TYPE)
-                .field("note",pod.getNote(),MediaType.TEXT_PLAIN_TYPE)
+                .field("note",pod.getNote(),MediaType.TEXT_PLAIN_TYPE) 
                 .field("callback",callback)
                 .bodyPart(imgPart);
         
         formData.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-        
-        Response response = target.request(MediaType.APPLICATION_JSON_TYPE)
-            .post(Entity.entity(multiPart, multiPart.getMediaType()));
-        
+                
          Invocation.Builder inv = target.request();
 
 		System.out.println(">>> part: " + formData);
