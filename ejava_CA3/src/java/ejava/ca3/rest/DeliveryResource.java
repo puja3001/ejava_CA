@@ -6,7 +6,9 @@
 package ejava.ca3.rest;
 
 import ejava.ca3.business.DeliveryBean;
+import ejava.ca3.business.PodBean;
 import ejava.ca3.model.Delivery;
+import ejava.ca3.model.Pod;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,7 +37,9 @@ public class DeliveryResource {
     
     @EJB private DeliveryBean deliveryBean;
     
-    @Resource(mappedName = "concurrent/myThreadpool")
+    @EJB private PodBean podBean;
+    
+    @Resource(mappedName = "concurrent/noticeThreadPool")
     private ManagedExecutorService executorService;
     
     @GET
@@ -51,16 +55,16 @@ public class DeliveryResource {
      }
 
     private Response doGet() {
-        List<Delivery> delList = new LinkedList();
-        delList = deliveryBean.findAll(); 
+        List<Pod> delList = new LinkedList();
+        delList = podBean.findAll(); 
         JsonArrayBuilder deliveryBuilder = Json.createArrayBuilder();
-        delList.stream().forEach((delivery) -> {
+        delList.stream().forEach((p) -> {
             deliveryBuilder.add(Json.createObjectBuilder()
                     .add("teamId", "1c794860")
-                    .add("podId", delivery.getPod().getPodId())
-                    .add("name",delivery.getName())
-                    .add("address", delivery.getAddress())
-                    .add("phone", delivery.getPhone())
+                    .add("podId", p.getPodId())
+                    .add("name",p.getPkgId().getName())
+                    .add("address", p.getPkgId().getAddress())
+                    .add("phone", p.getPkgId().getPhone())
             
             );
          });

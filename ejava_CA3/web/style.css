@@ -1,0 +1,29 @@
+.button-width {  
+ width: 150px;  
+ height: 40px; 
+ background-color: lightseagreen;
+ color: white;
+ font-weight: bold;
+ }  
+ .button-color {  
+ width: 150px;  
+ height: 40px;  
+ background-color: lightseagreen;
+ color: white;
+ font-weight: bold;
+ } 
+ h1{
+    font-family: monospace;
+    color: lightseagreen;
+   align-self: center;
+ }
+ body{
+     align-self: center;
+ }
+ form{
+     font-family: monospace;
+     font-weight: bold;
+     align-self: center;
+     
+ }
+ 

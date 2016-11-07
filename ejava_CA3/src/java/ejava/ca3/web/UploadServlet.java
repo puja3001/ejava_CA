@@ -44,7 +44,7 @@ public class UploadServlet extends HttpServlet{
         is.read(image);
         
         Long time = Long.parseLong(req.getParameter("time"));
-        Pod pod = new Pod();
+        Pod pod =  podBean.get(podId).get();
         pod.setPodId(podId);
         pod.setNote(note);
         pod.setImage(image);
@@ -55,7 +55,7 @@ public class UploadServlet extends HttpServlet{
         writeFile(image,req.getParameter("podId"));
         
         podBean.update(pod);
-        hqBean.postToHQ(pod);
+        hqBean.postToHQ();
         
         
     }
