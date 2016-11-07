@@ -125,7 +125,6 @@ public class Delivery implements Serializable {
         this.createDate = createDate;
     }
 
-    @XmlTransient
     public Pod getPod() {
         return pod;
     }

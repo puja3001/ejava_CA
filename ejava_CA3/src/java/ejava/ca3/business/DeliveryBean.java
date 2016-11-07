@@ -21,8 +21,13 @@ public class DeliveryBean {
     
     @PersistenceContext private EntityManager em;
     
-    public void create(Delivery delivery){
+    public Delivery create(Delivery delivery){
         em.persist(delivery);
+        return em.merge(delivery);
+    }
+    
+    public Delivery getDelivery(Delivery delivery){
+        return em.merge(delivery);
     }
     
     public List<Delivery> findAll(){
